@@ -16,7 +16,7 @@ public:
       numofmul = 0;
       numofdiv = 0;
   }
-  double Add(double x, double y)
+  double Add(double x, double y)  #double 말고 void로 했을 떄는 왜 오류가 나는지;;
   {
     numofadd++;
     return x+y;
