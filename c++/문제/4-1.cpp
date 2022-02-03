@@ -36,10 +36,16 @@ class FruitBuyer
   int numOfApples;
   
 public:
-  void InitMembers(int money)
-  {
+  bool InitMembers(int money)
+  { 
+    if(money < 0)
+    {
+      cout<<"돈이 잘못 입력되었습니다."<<endl;
+      return false;
+    }
     myMoney=money;
     numOfApples=0;
+    return true;
   }
   void BuyApples(FruitSeller &seller, int money)
   {
@@ -58,7 +64,14 @@ int main(void)
   FruitSeller seller;
   seller.InitMembers(1000, 20, 0);
   FruitBuyer buyer;
-  buyer.InitMembers(5000);
+  if(!buyer.InitMembers(-1))
+  {
+    cout<<"구매 실패"<<endl;
+  }
+  if(!buyer.InitMembers(5000))
+  {
+    cout<<"구매 실패"<<endl;
+  }
   buyer.BuyApples(seller, 2000);
   
   cout<<"과일 판매자의 현황"<<endl;
