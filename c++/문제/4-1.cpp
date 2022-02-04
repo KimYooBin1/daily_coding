@@ -23,7 +23,7 @@ public:
     myMoney+=money;
     return num;
   }
-  void ShowSalesResult()
+  void ShowSalesResult() const
   {
     cout<<"남은 사과: "<<numOfApples<<endl;
     cout<<"판매 수익: "<<myMoney<<endl;
@@ -36,23 +36,21 @@ class FruitBuyer
   int numOfApples;
   
 public:
-  bool InitMembers(int money)
+  void InitMembers(int money)
   { 
-    if(money < 0)
-    {
-      cout<<"돈이 잘못 입력되었습니다."<<endl;
-      return false;
-    }
     myMoney=money;
     numOfApples=0;
-    return true;
   }
   void BuyApples(FruitSeller &seller, int money)
   {
+    if(money < 0){
+        cout<<"구매 실패"<<endl;
+        return;
+    }
     numOfApples=seller.SaleApples(money);
     myMoney-=money;
   }
-  void ShowBuyResult()
+  void ShowBuyResult()const
   {
     cout<<"현재 잔액: "<<myMoney<<endl;
     cout<<"사과 개수: "<<numOfApples<<endl;
@@ -64,15 +62,9 @@ int main(void)
   FruitSeller seller;
   seller.InitMembers(1000, 20, 0);
   FruitBuyer buyer;
-  if(!buyer.InitMembers(-1))
-  {
-    cout<<"구매 실패"<<endl;
-  }
-  if(!buyer.InitMembers(5000))
-  {
-    cout<<"구매 실패"<<endl;
-  }
+  buyer.InitMembers(5000);
   buyer.BuyApples(seller, 2000);
+  buyer.BuyApples(seller, -10);
   
   cout<<"과일 판매자의 현황"<<endl;
   seller.ShowSalesResult();
