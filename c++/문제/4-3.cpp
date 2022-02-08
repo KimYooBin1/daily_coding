@@ -18,10 +18,13 @@ namespace COMP_POS
         {
                 case CLERK:
                     cout<<"사원"<<endl;
+                    break;
                 case SENIOR:
                     cout<<"주임"<<endl;
+                    break;
                 case ASSIST:
                     cout<<"대리"<<endl;
+                    break;
                 case MANAGER:
                     cout<<"과장"<<endl;
         }
@@ -31,23 +34,23 @@ namespace COMP_POS
 class NameCard
 {
 private:
-    char *myname;
-    char *myComName;
-    char *mynumber;
+    char * myname;
+    char * myComName;
+    char * mynumber;
     int myrank;
 public:
-    NameCard(char *name, char *ComName, char *number, int rank) : myrank(rank)
+    NameCard(const char * name,const char * ComName,const char * number, int rank) : myrank(rank)
     {
         int len1=strlen(name)+1;
-        myname = new char(len1);
+        myname = new char[len1];
         strcpy(myname, name);
         
         int len2=strlen(ComName)+1;
-        myComName = new char(len2);
+        myComName = new char[len2];
         strcpy(myComName, ComName);
         
         int len3=strlen(number)+1;
-        myComName = new char(len3);
+        myComName = new char[len3];
         strcpy(mynumber, number);
         
         
@@ -79,4 +82,3 @@ int main(void)
     manAssist.ShowNameCardInfo();
     return 0;
 }
-
