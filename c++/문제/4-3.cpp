@@ -39,7 +39,7 @@ private:
     char * mynumber;
     int myrank;
 public:
-    NameCard(const char * name,const char * ComName,const char * number, int rank) : myrank(rank)
+    NameCard(const char * name,const char * ComName,const char * number, int rank) : myrank(rank)           //c++ 버전문제로 char *은 상수취급으로 const를 붙혀야된다
     {
         int len1=strlen(name)+1;
         myname = new char[len1];
