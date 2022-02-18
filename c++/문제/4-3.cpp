@@ -50,7 +50,7 @@ public:
         strcpy(myComName, ComName);
         
         int len3=strlen(number)+1;
-        myComName = new char[len3];
+        mynumber = new char[len3];
         strcpy(mynumber, number);
         
         
