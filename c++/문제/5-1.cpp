@@ -55,7 +55,7 @@ public:
         
         
     }
-    NameCard(const NameCard &copy)
+    NameCard(const NameCard &copy) : myrank(copy.myrank)
     {
         myname = new char [strlen(copy.myname) + 1];
         strcpy(myname, copy.myname);
