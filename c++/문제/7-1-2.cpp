@@ -22,7 +22,7 @@ public:
     ~MyFriendInfo()
     {   
         cout<<"~MyFriendInfo()"<<endl;
-        delete name;
+        delete []name;
     }
 };
 
@@ -49,8 +49,8 @@ public:
     ~MyFriendDetailInfo()
     {
         cout<<"~MyFriendDetailInfo()"<<endl;
-        delete addr;
-        delete phone;
+        delete []addr;
+        delete []phone;
     }
 };
 int main()
