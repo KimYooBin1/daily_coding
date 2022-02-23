@@ -126,9 +126,44 @@ public:
     }
 };
 
+namespace RISK_LEVEL
+{
+    enum
+    {
+        RISK_A=30, RISK_B=20, RISK_C=10
+    };
+}
+
+class ForeignSalesWorker : public SalesWorker
+{
+private:
+    const int risklevel;
+public:
+    ForeignSalesWorker(const char * name, int money, double ratio, int risk) : SalesWorker(name, money, ratio), risklevel(risk)
+    {
+
+    }
+    int GetRiskPay() const
+    {
+        return (int)(SalesWorker::GetPay() * (risklevel / 100.0));
+    }
+    int GetPay() const
+    {
+        return SalesWorker::GetPay() + GetRiskPay();
+    }
+    void ShowSalaryInfo() const
+    {
+        ShowYourName();
+        cout<<"salary: "<<SalesWorker::GetPay()<<endl;
+        cout<<"risk pay: "<<GetRiskPay()<<endl;
+        cout<<"sum: "<<GetPay()<<endl;
+    }
+};
+
 
 int main()
 {
+    /*
     EmployeeHandler handler;
     
     handler.AddEmployee(new PermanentWorker("KIM", 1000));
@@ -146,8 +181,8 @@ int main()
     
     handler.ShowTotalSalary();
     return 0;
-    
-    /*
+    */
+
     EmployeeHandler handler;
     
     ForeignSalesWorker * fseller1=new ForeignSalesWorker("Hong", 1000, 0.1, RISK_LEVEL::RISK_A);
@@ -164,5 +199,4 @@ int main()
     
     handler.ShowAllSalaryInfo();
     return 0;
-    */
 }
