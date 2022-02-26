@@ -53,21 +53,30 @@ public:
     String& operator+= (const String& string1)
     {
         len+=string1.len-1;
+        char *tmpstr = new char[len];
+        strcpy(tmpstr, str);
+        strcat(tmpstr, string1.str);
         
+        if(str!=NULL)
+        {
+            delete []str;
+        }
+        str = tmpstr;
         return *this;
     }
-    /*String operator==()
+    bool operator==(const String& string1)
     {
-        
+        return strcmp(str, string1.str)?false:true;
     }
-    String operator<<()
+    /*String operator<<(cosnt String& string1)
     {
         
     }
     String operator>>()
     {
         
-    }*/
+    }
+    */
     ~String()
     {
         if(str!=NULL)
@@ -78,6 +87,5 @@ public:
 };
 int main()
 {
-    String str1("Hello world");
     return 0;
 }
